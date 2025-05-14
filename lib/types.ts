@@ -6,5 +6,5 @@ export type User = {
 
 export type Session = {
   user: User;
-  setUser: (user: User) => void;
+  expires: Date;
 };

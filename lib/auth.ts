@@ -23,9 +23,3 @@ export const validatePassword = async (
   if (!isMatch) return null;
   return { userId: user.id, name: user.name, lang: user.lang };
 };
-
-// export const auth = async () => {
-//   const cookie = (await cookies()).get('session')?.value;
-//   const session = await decrypt(cookie);
-//   return session || null;
-// };

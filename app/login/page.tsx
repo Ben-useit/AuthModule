@@ -31,7 +31,7 @@ const LoginPage = () => {
       <div className='relative z-20 flex items-center justify-center h-full'>
         <div className='flex flex-col md:flex-row w-full max-w-7xl px-6'>
           {/* Left Text */}
-          <div className='flex-1 flex items-center justify-center mb-10 md:mb-0'>
+          <div className='flex-1 flex items-center justify-center mb-10 mt-10 md:mb-5'>
             <h1 className='text-4xl font-bold text-white'>
               Sorry, not for everybody ...
             </h1>

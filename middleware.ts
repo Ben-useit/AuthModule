@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession } from '@/lib/session';
+import { getSession, updateSession } from '@/lib/session';
 
-const protectedPages = ['/card', '/dashboard'];
-const publicPages = ['/', '/login'];
+//const protectedPages = ['/card', '/dashboard'];
+const publicPages = ['/', '/login', '/card'];
 export const middleware = async (req: NextRequest) => {
   const pathname = req.nextUrl.pathname;
   if (
@@ -13,13 +13,14 @@ export const middleware = async (req: NextRequest) => {
   ) {
     return NextResponse.next();
   }
-  const isProtectedRoute = protectedPages.includes(pathname);
+  //const isProtectedRoute = protectedPages.includes(pathname);
   const isPublicRoute = publicPages.includes(pathname);
   if (isPublicRoute) {
     return NextResponse.next();
   }
   const session = await getSession();
-  if (!session?.userId) {
+  if (!session?.user.userId) {
     return NextResponse.redirect(new URL('/login', req.nextUrl));
   }
+  return await updateSession(req);
 };

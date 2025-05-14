@@ -11,7 +11,6 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import profilImage from '@/images/Youma Wague.png';
 import Image from 'next/image';
-import { useAuth } from '@/context';
 import { useEffect, useState } from 'react';
 
 const navigation = [

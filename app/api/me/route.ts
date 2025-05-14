@@ -5,17 +5,17 @@ import { cookies } from 'next/headers';
 import { decrypt } from '@/lib/session'; // assuming your decrypt function is here
 
 export async function GET() {
-  const session = (await cookies()).get('user')?.value;
+  const cookie = (await cookies()).get('session')?.value;
+
+  if (!cookie) {
+    return NextResponse.json({ user: null }, { status: 401 });
+  }
+
+  const session = await decrypt(cookie);
 
   if (!session) {
     return NextResponse.json({ user: null }, { status: 401 });
   }
 
-  const user = await decrypt(session);
-
-  if (!user) {
-    return NextResponse.json({ user: null }, { status: 401 });
-  }
-
-  return NextResponse.json({ user });
+  return NextResponse.json({ user: session.user });
 }
